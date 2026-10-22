@@ -1,0 +1,979 @@
+:root {
+  font-family: "DM Sans", "Segoe UI", Arial, sans-serif;
+  color: #26352c;
+  background: #f5f7f5;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+
+  --green: #315f45;
+  --green-hover: #3d7352;
+  --green-dark: #193b2b;
+  --green-light: #edf5ef;
+  --border: #e0e7e1;
+  --text: #26352c;
+  --muted: #7b887f;
+  --white: #ffffff;
+  --page-bg: #f5f7f5;
+}
+
+/* Global reset */
+* {
+  box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+  width: 100%;
+  min-width: 320px;
+  min-height: 100%;
+  margin: 0;
+}
+
+body {
+  min-height: 100vh;
+  color: var(--text);
+  background: var(--page-bg);
+}
+
+button,
+input,
+select {
+  font: inherit;
+}
+
+button {
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+}
+
+button:focus-visible,
+input:focus-visible,
+select:focus-visible {
+  outline: 2px solid #6a9c79;
+  outline-offset: 3px;
+}
+
+.app-shell {
+  min-height: 100vh;
+  background: var(--page-bg);
+}
+
+/* ========================================
+   HEADER
+   ======================================== */
+
+.topbar {
+  display: flex;
+  align-items: center;
+  min-height: 76px;
+  padding: 12px 28px;
+  background: var(--green-dark);
+  border-bottom: 1px solid #31533d;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-width: 0;
+}
+
+.brand-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 46px;
+  height: 46px;
+  flex: 0 0 auto;
+  overflow: hidden;
+  border: 1px solid #e0e8e1;
+  border-radius: 12px;
+  background: var(--white);
+}
+
+.brand-icon img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.brand h1 {
+  margin: 0;
+  color: var(--white);
+  font-size: 20px;
+  font-weight: 800;
+  letter-spacing: -0.5px;
+}
+
+.brand p {
+  margin: 4px 0 0;
+  color: #c3d2c7;
+  font-size: 12px;
+}
+
+/* ========================================
+   MAIN LAYOUT
+   ======================================== */
+
+.workspace {
+  display: grid;
+  grid-template-columns: 235px minmax(0, 1fr);
+  min-height: calc(100vh - 76px);
+}
+
+.sidebar {
+  min-width: 0;
+  padding: 24px 16px;
+  background: var(--white);
+  border-right: 1px solid var(--border);
+}
+
+.main-content {
+  min-width: 0;
+  padding: 28px;
+  background: var(--page-bg);
+}
+
+/* ========================================
+   EMPLOYEE SUMMARY
+   ======================================== */
+
+.summary-label {
+  display: block;
+  margin-bottom: 5px;
+  color: var(--muted);
+  font-size: 12px;
+}
+
+.summary-label + strong {
+  display: block;
+  color: var(--text);
+  font-size: 27px;
+  font-weight: 800;
+}
+
+/* ========================================
+   TEAM SELECTION
+   ======================================== */
+
+.sidebar-section {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+  margin-top: 24px;
+}
+
+.team-link {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  min-width: 0;
+  gap: 10px;
+  padding: 12px;
+  border: 1px solid transparent;
+  border-radius: 11px;
+  background: transparent;
+  color: var(--text);
+  text-align: left;
+  transition: background 160ms ease, border-color 160ms ease;
+}
+
+.team-link:hover,
+.team-link.active {
+  border-color: #dce7de;
+  background: #f0f5f1;
+}
+
+.team-link-text {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  min-width: 0;
+  gap: 4px;
+}
+
+.team-link-text strong {
+  overflow-wrap: anywhere;
+  color: var(--text);
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.team-link-text small {
+  color: var(--muted);
+  font-size: 11px;
+}
+
+/* ========================================
+   PAGE HEADING
+   ======================================== */
+
+.page-heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 22px;
+}
+
+.page-heading h2 {
+  margin: 0 0 8px;
+  color: var(--text);
+  font-size: clamp(23px, 2.2vw, 30px);
+  font-weight: 800;
+  letter-spacing: -0.8px;
+}
+
+.page-heading p {
+  margin: 0;
+  color: var(--muted);
+  font-size: 13px;
+  line-height: 1.6;
+}
+
+/* ========================================
+   CARDS
+   ======================================== */
+
+.add-card,
+.chart-card,
+.edit-card {
+  overflow: hidden;
+  border: 1px solid var(--border);
+  border-radius: 15px;
+  background: var(--white);
+  box-shadow: 0 4px 18px rgb(30 55 38 / 4%);
+}
+
+.add-card {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 16px;
+  margin-bottom: 18px;
+  padding: 20px;
+}
+
+.add-card-copy {
+  flex: 1 1 150px;
+  min-width: 0;
+}
+
+.add-card-copy h3,
+.chart-header h3,
+.edit-card h3 {
+  margin: 0;
+  color: var(--text);
+  font-size: 14px;
+  font-weight: 800;
+}
+
+.add-card-copy p,
+.chart-header p,
+.edit-card-heading p {
+  margin: 6px 0 0;
+  color: var(--muted);
+  font-size: 12px;
+  line-height: 1.6;
+}
+
+/* ========================================
+   ADD EMPLOYEE FORM
+   ======================================== */
+
+.employee-form {
+  display: flex;
+  flex: 1 1 360px;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: 8px;
+}
+
+.employee-form input,
+.employee-form select,
+.edit-form input {
+  min-width: 0;
+  min-height: 42px;
+  padding: 10px 12px;
+  border: 1px solid #d9e2da;
+  border-radius: 9px;
+  background: var(--white);
+  color: var(--text);
+  font-size: 12px;
+  transition: border-color 160ms ease, box-shadow 160ms ease;
+}
+
+.employee-form input {
+  flex: 1 1 120px;
+}
+
+.employee-form select {
+  flex: 1 1 135px;
+}
+
+.employee-form input::placeholder,
+.edit-form input::placeholder {
+  color: #98a49b;
+}
+
+.employee-form input:focus,
+.employee-form select:focus,
+.edit-form input:focus {
+  outline: none;
+  border-color: #7da889;
+  box-shadow: 0 0 0 3px rgb(91 148 112 / 12%);
+}
+
+/* ========================================
+   BUTTONS
+   ======================================== */
+
+.primary-button,
+.delete-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  min-height: 42px;
+  padding: 10px 14px;
+  border-radius: 9px;
+  font-size: 12px;
+  font-weight: 700;
+  transition: background 160ms ease, border-color 160ms ease,
+    transform 160ms ease;
+}
+
+.primary-button {
+  border: 1px solid var(--green);
+  background: var(--green);
+  color: var(--white);
+}
+
+.primary-button:hover:not(:disabled) {
+  transform: translateY(-1px);
+  border-color: var(--green-hover);
+  background: var(--green-hover);
+}
+
+.delete-button {
+  border: 1px solid #efd8d5;
+  background: #fff4f2;
+  color: #a64d48;
+}
+
+.delete-button:hover:not(:disabled) {
+  background: #ffe9e6;
+}
+
+.primary-button:disabled,
+.delete-button:disabled {
+  cursor: not-allowed;
+  opacity: 0.45;
+  transform: none;
+}
+
+/* ========================================
+   FEEDBACK MESSAGE
+   ======================================== */
+
+.feedback-message {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  margin: 0 0 16px;
+  padding: 12px 14px;
+  border: 1px solid #d8e8db;
+  border-radius: 10px;
+  background: #f0f7f1;
+  color: #315f45;
+  font-size: 12px;
+  overflow-wrap: anywhere;
+}
+
+.feedback-message span {
+  display: grid;
+  place-items: center;
+  width: 20px;
+  height: 20px;
+  flex: 0 0 auto;
+  border-radius: 50%;
+  background: #deecdf;
+  font-size: 11px;
+}
+
+/* ========================================
+   ORGANIZATION CHART
+   ======================================== */
+
+.chart-card {
+  margin-bottom: 20px;
+}
+
+.chart-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 12px;
+  padding: 18px 20px;
+  border-bottom: 1px solid #e6ebe7;
+  background: var(--white);
+}
+
+.chart-header p {
+  margin-top: 6px;
+}
+
+.chart-legend {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 12px;
+  color: var(--muted);
+  font-size: 11px;
+}
+
+.chart-legend span {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.legend-dot {
+  width: 8px;
+  height: 8px;
+  flex: 0 0 auto;
+  border-radius: 50%;
+}
+
+.purple-dot {
+  background: #a18bd8;
+}
+
+.green-dot {
+  background: #8ab998;
+}
+
+/* Chart canvas */
+.chart {
+  position: relative;
+  width: 100%;
+  height: clamp(420px, 60vh, 700px);
+  min-height: 380px;
+  background: #ffffff;
+}
+
+.chart .react-flow {
+  width: 100%;
+  height: 100%;
+  background: #ffffff;
+}
+
+.chart .react-flow__background {
+  background: #ffffff;
+}
+
+/* All nodes */
+.chart .react-flow__node {
+  min-width: 135px;
+  padding: 13px 16px;
+  border: 1px solid #dce5de;
+  border-radius: 12px;
+  background: #ffffff;
+  color: #26352c;
+  box-shadow: 0 3px 12px rgb(30 55 38 / 7%);
+  font-size: 12px;
+  font-weight: 700;
+  text-align: center;
+  transition: box-shadow 160ms ease, border-color 160ms ease;
+}
+
+.chart .react-flow__node:hover {
+  border-color: #9bbba3;
+  box-shadow: 0 5px 15px rgb(30 55 38 / 10%);
+}
+
+.chart .react-flow__node.selected {
+  border-color: #5b9470;
+  box-shadow: 0 0 0 3px rgb(91 148 112 / 14%);
+}
+
+/* Company node */
+.chart .react-flow__node.company-node {
+  border-color: #315f45;
+  background: #315f45;
+  color: #ffffff;
+  box-shadow: 0 5px 14px rgb(30 55 38 / 15%);
+}
+
+/* Department nodes */
+.chart .react-flow__node.it-node {
+  border-color: #d4e3f5;
+  background: #eef5ff;
+  color: #315477;
+}
+
+.chart .react-flow__node.finance-node {
+  border-color: #f0dfc5;
+  background: #fff6e9;
+  color: #815d30;
+}
+
+/* Team nodes */
+.chart .react-flow__node.team-node {
+  border-color: #d5e6d8;
+  background: #edf6ef;
+  color: #315f45;
+}
+
+/* Employee nodes */
+.chart .react-flow__node.employee-node {
+  border-color: #e2d8f5;
+  background: #f4efff;
+  color: #624b91;
+}
+
+/* Connection lines */
+.chart .react-flow__edge-path {
+  stroke: #a8b9ab;
+  stroke-width: 2;
+}
+
+.chart .react-flow__connection-path {
+  stroke: #5b9470;
+}
+
+/* Zoom controls */
+.chart .react-flow__controls {
+  overflow: hidden;
+  border: 1px solid #dfe6e0;
+  border-radius: 10px;
+  background: #ffffff;
+  box-shadow: 0 3px 12px rgb(30 55 38 / 8%);
+}
+
+.chart .react-flow__controls button {
+  width: 30px;
+  height: 30px;
+  border-bottom: 1px solid #e7ece8;
+  background: #ffffff;
+  color: #315f45;
+  fill: #315f45;
+}
+
+.chart .react-flow__controls button:hover {
+  background: #f0f5f1;
+}
+
+/* Mini map */
+.chart .react-flow__minimap {
+  overflow: hidden;
+  border: 1px solid #dfe6e0;
+  border-radius: 10px;
+  background: #ffffff;
+}
+
+.chart .react-flow__minimap-mask {
+  fill: rgb(237 243 238 / 65%);
+}
+
+/* Chart footer */
+.chart-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 10px;
+  padding: 12px 18px;
+  border-top: 1px solid #e6ebe7;
+  background: #ffffff;
+  color: var(--muted);
+  font-size: 11px;
+}
+
+/* ========================================
+   SELECTED EMPLOYEE
+   ======================================== */
+
+.edit-card {
+  padding: 20px;
+}
+
+.edit-card-heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.edit-card-heading > div {
+  min-width: 0;
+}
+
+.edit-card-heading p {
+  overflow-wrap: anywhere;
+}
+
+.edit-icon {
+  display: grid;
+  place-items: center;
+  width: 38px;
+  height: 38px;
+  flex: 0 0 auto;
+  border-radius: 11px;
+  background: #e8f0e9;
+  color: #315f45;
+  font-size: 19px;
+}
+
+.edit-form {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 9px;
+}
+
+.edit-form input {
+  flex: 1 1 170px;
+}
+
+.edit-form input:disabled {
+  background: #f2f5f2;
+  color: var(--muted);
+}
+
+/* ========================================
+   PAGE FOOTER
+   ======================================== */
+
+.page-footer {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 10px;
+  padding: 22px 2px 5px;
+  color: var(--muted);
+  font-size: 11px;
+}
+
+/* ========================================
+   TABLET VERSION
+   ======================================== */
+
+@media (max-width: 1000px) {
+  .workspace {
+    grid-template-columns: 205px minmax(0, 1fr);
+  }
+
+  .main-content {
+    padding: 22px;
+  }
+
+  .add-card {
+    align-items: flex-start;
+  }
+
+  .employee-form {
+    flex-basis: 100%;
+  }
+}
+
+/* ========================================
+   MOBILE VERSION — PHONE SCREENS
+   Все стили ниже предназначены для телефонов.
+   ======================================== */
+
+@media (max-width: 680px) {
+  .topbar {
+    min-height: 58px;
+    padding: 8px 12px;
+  }
+
+  .brand {
+    gap: 8px;
+  }
+
+  .brand-icon {
+    width: 34px;
+    height: 34px;
+    border-radius: 9px;
+  }
+
+  .brand h1 {
+    font-size: 16px;
+  }
+
+  .brand p {
+    margin-top: 2px;
+    font-size: 10px;
+  }
+
+  /* Stack the sidebar and content vertically on phones. */
+  .workspace {
+    display: flex;
+    flex-direction: column;
+    min-height: calc(100vh - 58px);
+  }
+
+  /* Compact team panel to reduce scrolling on mobile. */
+  .sidebar {
+    padding: 10px 12px;
+    border-right: 0;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .summary-label {
+    margin-bottom: 2px;
+    font-size: 11px;
+  }
+
+  .summary-label + strong {
+    font-size: 22px;
+  }
+
+  /* Display all three teams in one row. */
+  .sidebar-section {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 5px;
+    margin-top: 10px;
+  }
+
+  .team-link {
+    justify-content: center;
+    min-width: 0;
+    padding: 8px 5px;
+    border-radius: 8px;
+  }
+
+  .team-link-text {
+    gap: 3px;
+  }
+
+  .team-link-text strong {
+    font-size: 10px;
+    line-height: 1.3;
+  }
+
+  .team-link-text small {
+    font-size: 9px;
+    line-height: 1.3;
+  }
+
+  .main-content {
+    padding: 12px 10px;
+  }
+
+  .page-heading {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 8px;
+    margin-bottom: 12px;
+  }
+
+  .page-heading h2 {
+    font-size: 21px;
+  }
+
+  .page-heading p {
+    font-size: 12px;
+  }
+
+  /* Reduce the height and padding of the add-employee panel. */
+  .add-card {
+    gap: 9px;
+    margin-bottom: 12px;
+    padding: 12px;
+    border-radius: 12px;
+  }
+
+  .add-card-copy {
+    flex-basis: 100%;
+  }
+
+  .add-card-copy h3,
+  .chart-header h3,
+  .edit-card h3 {
+    font-size: 13px;
+  }
+
+  .add-card-copy p {
+    margin-top: 3px;
+    font-size: 11px;
+  }
+
+  .employee-form {
+    flex-direction: column;
+    flex-basis: 100%;
+    gap: 7px;
+  }
+
+  .employee-form input,
+  .employee-form select,
+  .employee-form button {
+    width: 100%;
+    min-height: 40px;
+    flex: 0 0 auto;
+    font-size: 12px;
+  }
+
+  .feedback-message {
+    gap: 7px;
+    margin-bottom: 12px;
+    padding: 9px 10px;
+    font-size: 11px;
+  }
+
+  /* Compact chart header and chart height for phone screens. */
+  .chart-card {
+    margin-bottom: 12px;
+    border-radius: 12px;
+  }
+
+  .chart-header {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 8px;
+    padding: 12px;
+  }
+
+  .chart-header p {
+    margin-top: 4px;
+    font-size: 11px;
+  }
+
+  .chart-legend {
+    gap: 10px;
+    font-size: 10px;
+  }
+
+  .chart {
+    height: 52vh;
+    min-height: 300px;
+    max-height: 440px;
+    touch-action: pan-x pan-y;
+  }
+
+  .chart .react-flow__minimap {
+    display: none;
+  }
+
+  .chart .react-flow__node {
+    min-width: 110px;
+    padding: 9px 10px;
+    border-radius: 9px;
+    font-size: 10px;
+  }
+
+  .chart .react-flow__controls button {
+    width: 28px;
+    height: 28px;
+  }
+
+  .chart-footer {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 5px;
+    padding: 9px 12px;
+    font-size: 10px;
+  }
+
+  /* Compact the selected-employee panel. */
+  .edit-card {
+    padding: 12px;
+    border-radius: 12px;
+  }
+
+  .edit-card-heading {
+    gap: 8px;
+    margin-bottom: 10px;
+  }
+
+  .edit-card-heading p {
+    font-size: 11px;
+  }
+
+  .edit-icon {
+    width: 32px;
+    height: 32px;
+    border-radius: 8px;
+    font-size: 16px;
+  }
+
+  .edit-form {
+    flex-direction: column;
+    gap: 7px;
+  }
+
+  .edit-form input,
+  .edit-form button {
+    width: 100%;
+    min-height: 40px;
+    flex: 0 0 auto;
+    font-size: 12px;
+  }
+
+  .page-footer {
+    flex-direction: column;
+    gap: 5px;
+    padding-top: 12px;
+    font-size: 10px;
+  }
+}
+
+/* ========================================
+   SMALL PHONES
+   Дополнительные настройки для узких экранов.
+   ======================================== */
+
+@media (max-width: 380px) {
+  .topbar {
+    padding-right: 9px;
+    padding-left: 9px;
+  }
+
+  .sidebar {
+    padding-right: 8px;
+    padding-left: 8px;
+  }
+
+  .team-link {
+    padding: 7px 3px;
+  }
+
+  .team-link-text strong {
+    font-size: 9px;
+  }
+
+  .team-link-text small {
+    font-size: 8px;
+  }
+
+  .main-content {
+    padding-right: 8px;
+    padding-left: 8px;
+  }
+
+  .chart {
+    height: 48vh;
+    min-height: 280px;
+  }
+}
+
+/* ========================================
+   REDUCED MOTION ACCESSIBILITY
+   ======================================== */
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+  }
+}

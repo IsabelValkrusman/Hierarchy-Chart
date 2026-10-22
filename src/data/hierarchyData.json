@@ -1,0 +1,80 @@
+
+{
+  "nodes": [
+    {
+      "id": "company",
+      "type": "default",
+      "position": { "x": 300, "y": 40 },
+      "data": { "label": "Company" }
+    },
+    {
+      "id": "it",
+      "type": "default",
+      "position": { "x": 150, "y": 170 },
+      "data": { "label": "IT Department" }
+    },
+    {
+      "id": "finance",
+      "type": "default",
+      "position": { "x": 480, "y": 170 },
+      "data": { "label": "Finance Department" }
+    },
+    {
+      "id": "frontend",
+      "type": "default",
+      "position": { "x": 70, "y": 300 },
+      "data": { "label": "Frontend Team" }
+    },
+    {
+      "id": "backend",
+      "type": "default",
+      "position": { "x": 240, "y": 300 },
+      "data": { "label": "Backend Team" }
+    },
+    {
+      "id": "accounting",
+      "type": "default",
+      "position": { "x": 480, "y": 300 },
+      "data": { "label": "Accounting Team" }
+    },
+    {
+      "id": "employee-1",
+      "type": "default",
+      "position": { "x": 70, "y": 430 },
+      "data": { "label": "Frontend Developer" },
+      "className": "employee-node"
+    }
+  ],
+  "edges": [
+    {
+      "id": "company-it",
+      "source": "company",
+      "target": "it"
+    },
+    {
+      "id": "company-finance",
+      "source": "company",
+      "target": "finance"
+    },
+    {
+      "id": "it-frontend",
+      "source": "it",
+      "target": "frontend"
+    },
+    {
+      "id": "it-backend",
+      "source": "it",
+      "target": "backend"
+    },
+    {
+      "id": "finance-accounting",
+      "source": "finance",
+      "target": "accounting"
+    },
+    {
+      "id": "frontend-employee-1",
+      "source": "frontend",
+      "target": "employee-1"
+    }
+  ]
+}
